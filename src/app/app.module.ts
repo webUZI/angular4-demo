@@ -13,10 +13,11 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { ProductService} from './shared/product.service'
 
 const routeConfig: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'product/:productTitle', component: ProductDetailComponent }
+  { path: 'product/:productId', component: ProductDetailComponent }
 ];
 
 @NgModule({
@@ -37,7 +38,7 @@ const routeConfig: Routes = [
     HttpModule,
     RouterModule.forRoot(routeConfig , { useHash: true })
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
