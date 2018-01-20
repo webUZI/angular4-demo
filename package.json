@@ -4,12 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4000",
+    "start": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "styles": [
+    "../node_modules/ng4-loader-bar/bundles/style.css"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.2.4",
@@ -26,6 +29,8 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
+    "ng2-http-loader": "0.0.0",
+    "ng4-loader-bar": "^1.0.3",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

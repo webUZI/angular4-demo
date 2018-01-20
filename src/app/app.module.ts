@@ -13,9 +13,16 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 import { ProductService} from './shared/product.service';
 import { FilterPipe } from './pipe/filter.pipe';
+import { CustomHttpcomComponent } from './customHttpcom/customHttpcom.component';
 
+import { providerHttp } from './customHttp/customHttp';
+import { Http, RequestOptions, XHRBackend } from '@angular/http';
+import { LoadingBarService } from './customHttp/share/loading-bar/loading-bar.service';
+import { LoadingBarComponent } from './customHttp/share/loading-bar/loading-bar.component';
+import {AngularLoadingBarModule} from 'ng4-loader-bar';
 const routeConfig: Routes = [
   { path: '', component: HomeComponent },
   { path: 'product/:productId', component: ProductDetailComponent }
@@ -32,16 +39,27 @@ const routeConfig: Routes = [
     StarsComponent,
     ProductDetailComponent,
     HomeComponent,
-    FilterPipe
+    CustomHttpcomComponent,
+    FilterPipe,
+    LoadingBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routeConfig , { useHash: true }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,AngularLoadingBarModule.forRoot()
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    LoadingBarService,
+    {
+      provide: Http,
+      useFactory: providerHttp,
+      deps: [XHRBackend, RequestOptions, LoadingBarService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

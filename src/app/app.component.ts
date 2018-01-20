@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+///<reference path="../../node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts"/>
+import {Component, DoCheck} from '@angular/core';
 import * as $ from 'jquery';
 
 @Component({
